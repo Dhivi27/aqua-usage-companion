@@ -11,7 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as FeaturesRouteImport } from './routes/features'
+import { Route as LeakageRouteImport } from './routes/leakage'
+import { Route as MonitoringRouteImport } from './routes/monitoring'
+import { Route as PredictionRouteImport } from './routes/prediction'
 import { Route as SolutionsRouteImport } from './routes/solutions'
 
 const IndexRoute = IndexRouteImport.update({
@@ -24,9 +28,29 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FeaturesRoute = FeaturesRouteImport.update({
   id: '/features',
   path: '/features',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeakageRoute = LeakageRouteImport.update({
+  id: '/leakage',
+  path: '/leakage',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MonitoringRoute = MonitoringRouteImport.update({
+  id: '/monitoring',
+  path: '/monitoring',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PredictionRoute = PredictionRouteImport.update({
+  id: '/prediction',
+  path: '/prediction',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SolutionsRoute = SolutionsRouteImport.update({
@@ -38,34 +62,75 @@ const SolutionsRoute = SolutionsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/dashboard': typeof DashboardRoute
   '/features': typeof FeaturesRoute
+  '/leakage': typeof LeakageRoute
+  '/monitoring': typeof MonitoringRoute
+  '/prediction': typeof PredictionRoute
   '/solutions': typeof SolutionsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/dashboard': typeof DashboardRoute
   '/features': typeof FeaturesRoute
+  '/leakage': typeof LeakageRoute
+  '/monitoring': typeof MonitoringRoute
+  '/prediction': typeof PredictionRoute
   '/solutions': typeof SolutionsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/dashboard': typeof DashboardRoute
   '/features': typeof FeaturesRoute
+  '/leakage': typeof LeakageRoute
+  '/monitoring': typeof MonitoringRoute
+  '/prediction': typeof PredictionRoute
   '/solutions': typeof SolutionsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/features' | '/solutions'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/dashboard'
+    | '/features'
+    | '/leakage'
+    | '/monitoring'
+    | '/prediction'
+    | '/solutions'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/features' | '/solutions'
-  id: '__root__' | '/' | '/about' | '/features' | '/solutions'
+  to:
+    | '/'
+    | '/about'
+    | '/dashboard'
+    | '/features'
+    | '/leakage'
+    | '/monitoring'
+    | '/prediction'
+    | '/solutions'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/dashboard'
+    | '/features'
+    | '/leakage'
+    | '/monitoring'
+    | '/prediction'
+    | '/solutions'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  DashboardRoute: typeof DashboardRoute
   FeaturesRoute: typeof FeaturesRoute
+  LeakageRoute: typeof LeakageRoute
+  MonitoringRoute: typeof MonitoringRoute
+  PredictionRoute: typeof PredictionRoute
   SolutionsRoute: typeof SolutionsRoute
 }
 
@@ -85,11 +150,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/features': {
       id: '/features'
       path: '/features'
       fullPath: '/features'
       preLoaderRoute: typeof FeaturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leakage': {
+      id: '/leakage'
+      path: '/leakage'
+      fullPath: '/leakage'
+      preLoaderRoute: typeof LeakageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/monitoring': {
+      id: '/monitoring'
+      path: '/monitoring'
+      fullPath: '/monitoring'
+      preLoaderRoute: typeof MonitoringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prediction': {
+      id: '/prediction'
+      path: '/prediction'
+      fullPath: '/prediction'
+      preLoaderRoute: typeof PredictionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/solutions': {
@@ -105,7 +198,11 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  DashboardRoute: DashboardRoute,
   FeaturesRoute: FeaturesRoute,
+  LeakageRoute: LeakageRoute,
+  MonitoringRoute: MonitoringRoute,
+  PredictionRoute: PredictionRoute,
   SolutionsRoute: SolutionsRoute,
 }
 export const routeTree = rootRouteImport
