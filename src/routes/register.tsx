@@ -44,7 +44,7 @@ function Register() {
       password: v.password,
       options: { emailRedirectTo: `${window.location.origin}/monitoring`, data: { full_name: v.full_name } },
     });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     if (data.session) {
       toast.success("Account created!");
       navigate({ to: "/monitoring" });

@@ -25,7 +25,7 @@ function Prediction() {
 
   const { chart, future } = useMemo(() => {
     // Fitted values = rolling 3-month forecast to show actual vs predicted
-    const fitted = history.map((_, i) => (i < 3 ? null : linearForecast(history.slice(i - 3, i).map((h) => h.liters), 1)[0]));
+    const fitted = history.map((_, i) => (i < 3 ? null : linearForecast(history.slice(i - 3, i).map((h) => h.liters), 1)[0]!));
     const future = linearForecast(history.slice(-6).map((h) => h.liters), horizon);
     const nextLabels = ["Nov", "Dec", "Jan", "Feb", "Mar", "Apr"];
     const chart = [
@@ -36,7 +36,7 @@ function Prediction() {
   }, [horizon, history]);
 
   const last = history.at(-1)!.liters;
-  const change = ((future[0] - last) / last) * 100;
+  const change = ((future[0]! - last) / last) * 100;
   const errs = chart.filter((c) => c.actual && c.predicted).map((c) => Math.abs((c.actual! - c.predicted!) / c.actual!));
   const accuracy = 100 - (errs.reduce((a, b) => a + b, 0) / errs.length) * 100;
 
@@ -47,7 +47,7 @@ function Prediction() {
       </PageHero>
       <Section>
         <div className="grid gap-4 sm:grid-cols-3">
-          <StatCard icon={<BrainCircuit className="h-5 w-5" />} label="Next month forecast" value={`${future[0].toLocaleString()} L`} />
+          <StatCard icon={<BrainCircuit className="h-5 w-5" />} label="Next month forecast" value={`${future[0]!.toLocaleString()} L`} />
           <StatCard icon={change < 0 ? <TrendingDown className="h-5 w-5" /> : <TrendingUp className="h-5 w-5" />} label="Change vs last month" value={`${change > 0 ? "+" : ""}${change.toFixed(1)}%`} tone={change < 0 ? "success" : "warning"} />
           <StatCard icon={<Sparkles className="h-5 w-5" />} label="Model fit (simulated)" value={`${accuracy.toFixed(1)}%`} hint="1 − mean absolute % error" />
         </div>
