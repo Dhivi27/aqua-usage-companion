@@ -28,7 +28,7 @@ export function Section({ children, className = "" }: { children: ReactNode; cla
   return <section className={`mx-auto max-w-7xl px-4 py-14 sm:px-6 ${className}`}>{children}</section>;
 }
 
-export function StatCard({ icon, label, value, hint, tone = "primary" }: { icon: ReactNode; label: string; value: string; hint?: string; tone?: "primary" | "success" | "warning" | "destructive" }) {
+export function StatCard({ icon, label, value, hint, tone = "primary" }: { icon: ReactNode; label: string; value: string; hint?: string | undefined; tone?: "primary" | "success" | "warning" | "destructive" }) {
   const toneCls = {
     primary: "bg-secondary text-primary",
     success: "bg-success/15 text-success",

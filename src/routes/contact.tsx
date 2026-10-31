@@ -36,7 +36,7 @@ function Contact() {
 
   const onSubmit = async (v: V) => {
     const { error } = await supabase.from("contact_messages").insert(v);
-    if (error) return toast.error("Couldn't send message. Please try again.");
+    if (error) { toast.error("Could not send message. Please try again."); return; }
     toast.success("Message sent! We'll get back to you soon.");
     reset();
   };
@@ -68,7 +68,7 @@ function Contact() {
   );
 }
 
-function F({ label, id, err, children }: { label: string; id: string; err?: string; children: React.ReactNode }) {
+function F({ label, id, err, children }: { label: string; id: string; err?: string | undefined; children: React.ReactNode }) {
   return (
     <div className="space-y-1.5">
       <Label htmlFor={id}>{label}</Label>

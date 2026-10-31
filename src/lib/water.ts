@@ -49,8 +49,8 @@ export function linearForecast(values: number[], steps: number): number[] {
   let num = 0;
   let den = 0;
   for (let i = 0; i < n; i++) {
-    num += (xs[i] - mx) * (values[i] - my);
-    den += (xs[i] - mx) ** 2;
+    num += (xs[i]! - mx) * (values[i]! - my);
+    den += (xs[i]! - mx) ** 2;
   }
   const slope = den === 0 ? 0 : num / den;
   const intercept = my - slope * mx;
@@ -59,12 +59,12 @@ export function linearForecast(values: number[], steps: number): number[] {
 
 export function toCsv(rows: Record<string, string | number>[]): string {
   if (rows.length === 0) return "";
-  const headers = Object.keys(rows[0]);
+  const headers = Object.keys(rows[0]!);
   const esc = (v: string | number) => {
     const s = String(v);
     return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
   };
-  return [headers.join(","), ...rows.map((r) => headers.map((h) => esc(r[h])).join(","))].join("\n");
+  return [headers.join(","), ...rows.map((r) => headers.map((h) => esc(r[h] ?? "")).join(","))].join("\n");
 }
 
 export function downloadCsv(filename: string, rows: Record<string, string | number>[]) {

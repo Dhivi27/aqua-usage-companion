@@ -39,7 +39,7 @@ function Login() {
 
   const onSubmit = async (v: V) => {
     const { error } = await supabase.auth.signInWithPassword(v);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Welcome back!");
     navigate({ to: "/monitoring" });
   };

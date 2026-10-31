@@ -83,7 +83,7 @@ function Reports() {
 }
 
 function ReportTable({ title, cols, rows, file }: { title: string; cols: string[]; rows: Record<string, string | number>[]; file: string }) {
-  const total = rows.reduce((s, r) => s + Number(r.liters || 0), 0);
+  const total = rows.reduce((s, r) => s + Number(r["liters"] || 0), 0);
   return (
     <div className="my-4 rounded-2xl border bg-card p-5 shadow-soft">
       <div className="mb-3 flex items-center justify-between gap-2">
